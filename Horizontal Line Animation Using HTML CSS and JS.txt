@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: #282c34;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            animation: fall 5s linear infinite, sway 2s ease-in-out infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        @keyframes sway {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(20px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+<script>
+    function createConfetti() {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = `${Math.random() * 100}vw`;
+        confetti.style.backgroundColor = getRandomColor();
+        document.body.appendChild(confetti);
+
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 5000);
+    }
+
+
+    function getRandomColor() {
+        const colors = ['#ff66b2', '#66ff66', '#66ccff', '#ffcc66', '#ff6666'];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+
+    setInterval(createConfetti, 100);
+</script>
+
+
+</body>
+</html>
